@@ -8,26 +8,26 @@ class MaterialBibliografico{
 
     //atributos privados
     private:
-        string nombre;
+        string titulo;
         string isbn;
         string autor;
         bool prestado;
     public:
         //constructor
-        MaterialBibliografico(string nombre, 
+        MaterialBibliografico(string titulo, 
         string isbn, string autor, bool prestado);
 
         // destructor
         ~MaterialBibliografico();
 
         // getters
-        string getNombre();
+        string getTitulo();
         string getIsbn();
         string getAutor();
         bool getPrestado();
 
         //setters
-        void setNombre(string nombre);
+        void setTitulo(string titulo);
         void setIsbn(string isbn);
         void setAutor(string autor);
         void setPrestado(bool prestado);

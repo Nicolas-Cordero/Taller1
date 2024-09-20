@@ -1,9 +1,8 @@
-
+#pragma once
 #include <iostream>
 #include "MaterialBibliografico.h"
-
 using namespace std;
-#pragma once
+
 
 class Libro : public MaterialBibliografico{
     private:

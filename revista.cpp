@@ -16,7 +16,7 @@ revista::~revista() {
 
 // Getters
 string revista::getNombre() {
-    return MaterialBibliografico::getNombre();
+    return MaterialBibliografico::getTitulo();
 }
 string revista::getIsbn() {
     return MaterialBibliografico::getIsbn();
@@ -36,7 +36,7 @@ string revista::getMesPublicacion() {
 
 // Setters
 void revista::setNombre(string nombre) {
-    MaterialBibliografico::setNombre(nombre);
+    MaterialBibliografico::setTitulo(nombre);
 }
 void revista::setIsbn(string isbn) {
     MaterialBibliografico::setIsbn(isbn);

@@ -9,7 +9,8 @@ MaterialBibliografico::MaterialBibliografico(string nombre,
         this -> autor = autor; this -> prestado = prestado;}
 
 // destructor
-MaterialBibliografico::~MaterialBibliografico(){cout<<"Se destruye el Material Bibliografico con ISBN"+isbn;}
+MaterialBibliografico::~MaterialBibliografico(){
+    cout<<"Se destruye el Material Bibliografico con ISBN"+isbn;}
 //getters
 string MaterialBibliografico::getNombre(){
     return nombre;

@@ -1,7 +1,8 @@
-#include <iostream>
-#include <MaterialBibliografico.h>
-using namespace std;
 #pragma once
+#include <iostream>
+#include "MaterialBibliografico.h"
+using namespace std;
+
 
 class revista: public MaterialBibliografico{
     private:

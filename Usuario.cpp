@@ -52,7 +52,17 @@ void Usuario:: prestarMaterial(MaterialBibliografico *material,MaterialBibliogra
     }
 
 }
-void Usuario::devolverMaterial(int indice){//falta completar este método
+void Usuario::devolverMaterial(int indice){
+    if(indice >= 0 && indice < materialesPrestadosActuales){
+        cout << "Material devuelto: "<<materialesPrestados[indice]->getTitulo() << endl;
+        for(int i = indice; i < materialesPrestadosActuales-1;i++){
+            materialesPrestados[i] = materialesPrestados[i+1];
+        }
+        materialesPrestados[materialesPrestadosActuales-1] = nullptr;
+        materialesPrestadosActuales--;
+    }else{
+        cout << "Índice inválido."<< endl;
+    }
 
 }
 
@@ -69,4 +79,5 @@ void Usuario::mostrarMaterialesPrestados(){
     }
 
 }
+
 

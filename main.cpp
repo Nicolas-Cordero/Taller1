@@ -11,21 +11,7 @@ using namespace std;
 
 
 // esta función tiene un rol netamente estético y no interfiere con los requerimientos del programa
-void printAnimado(const std::string& texto, int delayMilisegundos, bool endline) {
-    int tamaño = texto.length();
-    for (int i = 0 ; i < tamaño ; i++) {
-     
-        cout << texto[i] << std::flush;  // Imprime el carácter y vacía el buffer
 
-        
-        std::this_thread::sleep_for(std::chrono::milliseconds(delayMilisegundos));  // Espera el tiempo especificado
-    
-    }
-    if (endline){
-       std::cout << std::endl;  // Al final, imprime un salto de línea 
-    };
-    
-}
 
 
 int main(){
@@ -48,9 +34,9 @@ int main(){
     // bucle del sistema
     while (true){
         int x;
-        printAnimado("Ingrese el valor de x",15,true);
+        cout << "Ingrese el valor de x";
         cin >> x;
-        printAnimado(("El valor de X actualmente es -> "+to_string(x)),15,true);
+        cout <<"El valor de X actualmente es -> "+to_string(x);
     }
 
     return 0;

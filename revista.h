@@ -12,7 +12,7 @@ class revista: public MaterialBibliografico{
         //constructor
         revista(string nombre, string isbn, 
         string autor, bool prestado, 
-        string numeroEdicion, string mesPublicacion);
+        int numeroEdicion, string mesPublicacion);
 
         // destructor}
         ~revista();

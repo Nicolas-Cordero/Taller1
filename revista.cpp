@@ -4,9 +4,11 @@ using namespace std;
 
 // Constructor
 revista::revista(string nombre, string isbn, string autor, 
-    bool prestado, string numeroEdicion, string mesPublicacion)
-    : MaterialBibliografico(nombre, isbn, autor, prestado), // inicializamos la clase base
-      numeroEdicion(numeroEdicion), mesPublicacion(mesPublicacion) {}
+    bool prestado, int numeroEdicion, string mesPublicacion)
+    :MaterialBibliografico(nombre, isbn, autor, prestado) {
+    this -> numeroEdicion = numeroEdicion;
+    this -> mesPublicacion = mesPublicacion;
+}
 
 // Destructor
 revista::~revista() {

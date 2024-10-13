@@ -68,12 +68,6 @@ int main(){
 
 };
 
-
-/*PENDIENTE: 
-1.- agregar los nuevos materiales a la biblioteca
-2.- agregar control de errores en caso de que falten
-*/
-
 void agregarMaterial(MaterialBibliografico * biblioteca[],int cantidadActualEnBiblioteca,int capacidadMaximaBiblioteca,ma_engine eng){
     int tipoMaterial;
     string nombre,isbn,autor;
@@ -81,13 +75,13 @@ void agregarMaterial(MaterialBibliografico * biblioteca[],int cantidadActualEnBi
         printAnimado("¿Qué tipo de Material Bibliográfico desea agregar? \n1)Libro\n2)Revista\n",15,true,eng);
         printAnimado("opción: ",15,false,eng)
         cin >> tipoMaterial;
-        if(cin.fail() || (tipoMaterial != 1 %% tipoMaterial != 2)){
+        if(cin.fail() || (tipoMaterial != 1 && tipoMaterial != 2)){
             printAnimado("Error. Intentelo nuevamente.",15,true,eng);
             tipoMaterial = 0;
         }
 
 
-    }while(tipoMaterial != 1 %% tipoMaterial != 2);
+    }while(tipoMaterial != 1 && tipoMaterial != 2);
 
     if(cantidadActualEnBiblioteca >= capacidadMaximaBiblioteca){
         printAnimado("La biblioteca ha alcanzado su capacidad máxima.",15,true,eng);
@@ -103,6 +97,7 @@ void agregarMaterial(MaterialBibliografico * biblioteca[],int cantidadActualEnBi
     getline(cin,autor);
 
     if(tipoMaterial == 1){
+        bool prestado =true;
         string fecha,resumen;
         printAnimado("Ingrese la fecha de publicación: ",15,false,eng);
         getline(cin,fecha);
@@ -110,9 +105,13 @@ void agregarMaterial(MaterialBibliografico * biblioteca[],int cantidadActualEnBi
         getline(cin,resumen);
         
         //AGREGAR EL NUEVO LIBRO A LA LISTA BIBLIOTECA
+        MaterialBibliografico *nuevoMaterial = new Libro(nombre,isbn,autor,prestado,fecha,resumen);
+        biblioteca[cantidadActualEnBiblioteca] = nuevoMaterial;
+        cantidadActualEnBiblioteca++;
 
 
     }else if(tipoMaterial == 2){
+        bool prestado = true;
         int numEdicion;
         string mesPubliacion;
 
@@ -132,6 +131,9 @@ void agregarMaterial(MaterialBibliografico * biblioteca[],int cantidadActualEnBi
 
 
         //AGREGAR LA NUEVA REVISTA A LA LISTA BIBLIOTECA
+        MaterialBibliografico *nuevoMaterial = new Revista(nombre,isbn,autor,prestado,numEdicion,mesPublicacion);
+        biblioteca[cantidadActualEnBiblioteca] = nuevoMaterial;
+        cantidadActualEnBiblioteca++;
 
     }
 

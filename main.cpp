@@ -33,8 +33,10 @@ void printAnimado(const std::string& texto, int delayMilisegundos, bool endline)
 int main(){
     //esto no se toca (recordatorio de: martina, para: martina)
     //biblioteca
-    MaterialBibliografico *biblioteca[100];
-    int cantActualEnBiblioteca = 0; 
+
+    /// PARA DESPUES
+    //MaterialBibliografico *biblioteca[100];
+    //int cantActualEnBiblioteca = 0; 
 
     /*Crear menú con 4 opciones:
      1) Agregar material bibliografico a la biblioteca

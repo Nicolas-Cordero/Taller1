@@ -1,9 +1,9 @@
 #include <iostream>
-#include "revista.h"
+#include "Revista.h"
 using namespace std;
 
 // Constructor
-revista::revista(string nombre, string isbn, string autor, 
+Revista::Revista(string nombre, string isbn, string autor, 
     bool prestado, int numeroEdicion, string mesPublicacion)
     :MaterialBibliografico(nombre, isbn, autor, prestado) {
     this -> numeroEdicion = numeroEdicion;
@@ -11,54 +11,54 @@ revista::revista(string nombre, string isbn, string autor,
 }
 
 // Destructor
-revista::~revista() {
+Revista::~Revista() {
     cout<<"Se destruye la revista con ISBN"+getIsbn();
     }
 
 
 // Getters
-string revista::getNombre() {
+string Revista::getNombre() {
     return MaterialBibliografico::getTitulo();
 }
-string revista::getIsbn() {
+string Revista::getIsbn() {
     return MaterialBibliografico::getIsbn();
 }
-string revista::getAutor() {
+string Revista::getAutor() {
     return MaterialBibliografico::getAutor();
 }
-bool revista::getPrestado() {
+bool Revista::getPrestado() {
     return MaterialBibliografico::getPrestado();
 }
-string revista::getNumeroEdicion() {
+string Revista::getNumeroEdicion() {
     return numeroEdicion;
 }
-string revista::getMesPublicacion() {
+string Revista::getMesPublicacion() {
     return mesPublicacion;
 }
 
 // Setters
-void revista::setNombre(string nombre) {
+void Revista::setNombre(string nombre) {
     MaterialBibliografico::setTitulo(nombre);
 }
-void revista::setIsbn(string isbn) {
+void Revista::setIsbn(string isbn) {
     MaterialBibliografico::setIsbn(isbn);
 }
-void revista::setAutor(string autor) {
+void Revista::setAutor(string autor) {
     MaterialBibliografico::setAutor(autor);
 }
-void revista::setPrestado(bool prestado) {
+void Revista::setPrestado(bool prestado) {
     MaterialBibliografico::setPrestado(prestado);
 }
-void revista::setNumeroEdicion(string numeroEdicion) {
+void Revista::setNumeroEdicion(string numeroEdicion) {
     this->numeroEdicion = numeroEdicion;
 }
 
-void revista::setMesPublicacion(string mesPublicacion) {
+void Revista::setMesPublicacion(string mesPublicacion) {
     this->mesPublicacion = mesPublicacion;
 }
 
 // toString
-void revista::mostrarInformacion() {
+void Revista::mostrarInformacion() {
     string textPrestado;
     if (getPrestado() == true){
         textPrestado = "Si";

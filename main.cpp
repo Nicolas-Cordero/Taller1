@@ -15,6 +15,10 @@ using namespace std;
 
 
 int main(){
+
+    MaterialBibliografico* biblioteca[100];
+    bool programaCorriendo = true;
+
     //esto no se toca (recordatorio de: martina, para: martina)
     //biblioteca
 
@@ -32,11 +36,15 @@ int main(){
 
 
     // bucle del sistema
-    while (true){
-        int x;
-        cout << "Ingrese el valor de x";
-        cin >> x;
-        cout <<"El valor de X actualmente es -> "+to_string(x);
+    while (programaCorriendo){
+        
+        cout << "1) Agregar material bibliográfico a la biblioteca" << endl;
+        cout << "2) Mostrar información de los materiales bibliográficos" << endl;
+        cout << "3) Buscar material bibliográfico" << endl;
+        cout << "4) Prestamo y devolución de material" << endl;
+
+
+        programaCorriendo = false;
     }
 
     return 0;

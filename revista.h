@@ -4,18 +4,18 @@
 using namespace std;
 
 
-class revista: public MaterialBibliografico{
+class Revista: public MaterialBibliografico{
     private:
         string numeroEdicion;
         string mesPublicacion;
     public:
         //constructor
-        revista(string nombre, string isbn, 
+        Revista(string nombre, string isbn, 
         string autor, bool prestado, 
         int numeroEdicion, string mesPublicacion);
 
         // destructor}
-        ~revista();
+        ~Revista();
 
         //getters
         // getters

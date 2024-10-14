@@ -3,17 +3,17 @@
 using namespace std;
 
 //constructor
-MaterialBibliografico::MaterialBibliografico(string titulo, 
+MaterialBibliografico::MaterialBibliografico(string nombre, 
         string isbn, string autor, bool prestado)
-        {this -> titulo = titulo;this -> isbn = isbn;
+        {this -> nombre = nombre;this -> isbn = isbn;
         this -> autor = autor; this -> prestado = prestado;}
 
 // destructor
 MaterialBibliografico::~MaterialBibliografico(){
     cout<<"Se destruye el Material Bibliografico con ISBN"+isbn;}
 //getters
-string MaterialBibliografico::getTitulo(){
-    return titulo;
+string MaterialBibliografico::getNombre(){
+    return nombre;
 }
 string MaterialBibliografico::getIsbn(){
     return isbn;
@@ -26,8 +26,8 @@ bool MaterialBibliografico::getPrestado(){
 }
 
 //setters
-void MaterialBibliografico::setTitulo(string titulo){
-    this -> titulo = titulo;
+void MaterialBibliografico::setNombre(string nombre){
+    this -> nombre = nombre;
 }
 void MaterialBibliografico::setIsbn(string isbn){
     this -> isbn = isbn;
@@ -39,6 +39,6 @@ void MaterialBibliografico::setPrestado(bool prestado ){
     this -> prestado  = prestado;
 }
 //toSrtring
-void MaterialBibliografico::mostrarInformacion(){
-    cout << "Nombre: "+titulo+" ISBN: "+isbn+" Autor: "+autor;
+string MaterialBibliografico::mostrarInformacion(){
+    return  nombre+","+isbn+","+autor;
 }

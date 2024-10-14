@@ -18,7 +18,7 @@ Revista::~Revista() {
 
 // Getters
 string Revista::getNombre() {
-    return MaterialBibliografico::getTitulo();
+    return MaterialBibliografico::getNombre();
 }
 string Revista::getIsbn() {
     return MaterialBibliografico::getIsbn();
@@ -29,7 +29,7 @@ string Revista::getAutor() {
 bool Revista::getPrestado() {
     return MaterialBibliografico::getPrestado();
 }
-string Revista::getNumeroEdicion() {
+int Revista::getNumeroEdicion() {
     return numeroEdicion;
 }
 string Revista::getMesPublicacion() {
@@ -38,7 +38,7 @@ string Revista::getMesPublicacion() {
 
 // Setters
 void Revista::setNombre(string nombre) {
-    MaterialBibliografico::setTitulo(nombre);
+    MaterialBibliografico::setNombre(nombre);
 }
 void Revista::setIsbn(string isbn) {
     MaterialBibliografico::setIsbn(isbn);
@@ -49,7 +49,7 @@ void Revista::setAutor(string autor) {
 void Revista::setPrestado(bool prestado) {
     MaterialBibliografico::setPrestado(prestado);
 }
-void Revista::setNumeroEdicion(string numeroEdicion) {
+void Revista::setNumeroEdicion(int numeroEdicion) {
     this->numeroEdicion = numeroEdicion;
 }
 
@@ -58,12 +58,13 @@ void Revista::setMesPublicacion(string mesPublicacion) {
 }
 
 // toString
-void Revista::mostrarInformacion() {
+string Revista::mostrarInformacion() {
     string textPrestado;
     if (getPrestado() == true){
         textPrestado = "Si";
     } else{
         textPrestado = "No";
-    cout << "Nombre: " << getNombre()+" ISBN: " + getIsbn()+" Autor: " + getAutor()+ "Prestado: " + 
-    textPrestado+ "Número de edición: " + getNumeroEdicion()+"Mes de publicación: " + getMesPublicacion() << endl;
+    return getNombre()+"," + getIsbn()+"," + getAutor()+ "," + 
+    textPrestado+ "," + to_string(getNumeroEdicion())+"," + getMesPublicacion();
 };
+}

@@ -18,13 +18,21 @@ class Libro : public MaterialBibliografico{
         // getters
         string getFechaPublicacion();
         string getResumen();
+        string getNombre();
+        string getIsbn();
+        string getAutor();  
+        bool getPrestado();
+
+
 
         // setters
         void setFechaPublicacion(string fechaPublicacion);
         void setResumen(string resumen);
 
         //toString
-        virtual void mostrarInformacion();
+        virtual string mostrarInformacion();
+
 
 
 };
+

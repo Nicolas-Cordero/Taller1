@@ -43,7 +43,7 @@ void Usuario:: prestarMaterial(MaterialBibliografico *material,MaterialBibliogra
            if(materialesPrestadosActuales < 5){
                 materialesPrestados[materialesPrestadosActuales] = material; 
                 materialesPrestadosActuales++;
-                cout << "Material prestado, título: "+material->getTitulo() << endl;
+                cout << "Material prestado, título: "+material->getNombre() << endl;
             }
             else{
                 cout << "(Error) Excede el límite de libros que un usuario puede tener."<< endl;
@@ -54,7 +54,7 @@ void Usuario:: prestarMaterial(MaterialBibliografico *material,MaterialBibliogra
 }
 void Usuario::devolverMaterial(int indice){
     if(indice >= 0 && indice < materialesPrestadosActuales){
-        cout << "Material devuelto: "<<materialesPrestados[indice]->getTitulo() << endl;
+        cout << "Material devuelto: "<<materialesPrestados[indice]->getNombre() << endl;
         for(int i = indice; i < materialesPrestadosActuales-1;i++){
             materialesPrestados[i] = materialesPrestados[i+1];
         }
@@ -73,7 +73,7 @@ void Usuario::mostrarMaterialesPrestados(){
     else{
         cout << "Materiales Bibliograficos Prestados: "<<endl;
         for(int j = 0;j < materialesPrestadosActuales;j++){
-            cout <<j+1<<")"<<materialesPrestados[j]->getTitulo()<<endl;
+            cout <<j+1<<")"<<materialesPrestados[j]->getNombre()<<endl;
         }
 
     }

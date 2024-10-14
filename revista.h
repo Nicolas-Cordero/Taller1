@@ -6,7 +6,7 @@ using namespace std;
 
 class Revista: public MaterialBibliografico{
     private:
-        string numeroEdicion;
+        int numeroEdicion;
         string mesPublicacion;
     public:
         //constructor
@@ -23,7 +23,7 @@ class Revista: public MaterialBibliografico{
         string getIsbn();
         string getAutor();
         bool getPrestado();
-        string getNumeroEdicion();
+        int getNumeroEdicion();
         string getMesPublicacion();
 
         //setters
@@ -31,9 +31,9 @@ class Revista: public MaterialBibliografico{
         void setIsbn(string isbn);
         void setAutor(string autor);
         void setPrestado(bool prestado);
-        void setNumeroEdicion(string numeroEdicion);
+        void setNumeroEdicion(int numeroEdicion);
         void setMesPublicacion(string mesPublicacion);
 
         //toString
-         virtual void mostrarInformacion();
+         virtual string mostrarInformacion();
 };

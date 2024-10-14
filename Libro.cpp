@@ -32,8 +32,32 @@ void Libro::setResumen(string resumen){
 
 }
 
-//toString
-void Libro::mostrarInformacion(){
-    cout << "Fecha de Publicacion: "+fechaPublicacion+" Resumen: "+resumen << endl;
-
+string Libro::getNombre(){
+    return MaterialBibliografico::getNombre();
 }
+
+string Libro::getIsbn(){
+    return MaterialBibliografico::getIsbn();
+}
+
+string Libro::getAutor(){
+    return MaterialBibliografico::getAutor();
+}
+
+bool Libro::getPrestado(){
+    return MaterialBibliografico::getPrestado();
+}
+
+
+
+//toString
+string Libro::mostrarInformacion() {
+    string textPrestado;
+    if (getPrestado() == true){
+        textPrestado = "Si";
+    } else{
+        textPrestado = "No";
+    return getNombre() + "," + getIsbn() + "," + getAutor() + "," + 
+    textPrestado + "," + getFechaPublicacion() + "," + getResumen();
+}
+};

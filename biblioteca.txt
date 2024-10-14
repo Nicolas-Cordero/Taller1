@@ -1,0 +1,1 @@
+revista,revista1,ISBN1,AUTOR1,0,1,enero

@@ -14,6 +14,11 @@
 
 using namespace std;
 
+bool stringSonIguales(const string& cadena1, const string& cadena2) {
+    return cadena1 == cadena2;
+}
+
+
 void imprimirBiblioteca(MaterialBibliografico* biblioteca [100], int contadorBiblioteca){
     int i = 0;
     while (biblioteca[i] != nullptr)
@@ -22,6 +27,79 @@ void imprimirBiblioteca(MaterialBibliografico* biblioteca [100], int contadorBib
         i++;
     }
 }
+
+void imprimirTodosLosUsuarios(Usuario* vectorUsuarios[100]){
+    int i = 0;
+    while (vectorUsuarios[i] != nullptr)
+    {
+        cout << to_string(i+1) << ") " << ") Nombre: " << vectorUsuarios[i]->getNombre() << " - ID: " << vectorUsuarios[i]->getId() << endl;
+        i++;
+    }
+}
+
+void crearUsuario(Usuario* vectorUsuarios[100], int contadorUsuarios){
+    if (contadorUsuarios >= 100){
+        cout << "No hay espacio en la base de datos de usuarios" << endl;
+    }
+    else{
+
+        cout << "Ingrese el nombre del usuario: ";
+        string nombre;
+        cin >> nombre;
+        cout << "Ingrese el ID del usuario: ";
+        string id;
+        cin >> id;
+        Usuario* nuevoUsuario = new Usuario(nombre, id, 0); 
+        vectorUsuarios[contadorUsuarios] = nuevoUsuario;
+        contadorUsuarios++;
+    }
+}
+
+bool buscarUsuarioPorNombre(Usuario* vectorUsuarios[100], int contadorUsuarios) {
+    string nombreBuscado;
+    cout << "Ingrese el nombre del usuario a buscar: ";
+    cin >> nombreBuscado;   
+    cout <<"Buscando usuario..."<< nombreBuscado << endl;   
+    for (int i = 0; i < contadorUsuarios; i++) {
+
+
+        if (stringSonIguales(vectorUsuarios[i]->getNombre(), nombreBuscado)) {
+            cout << "Usuario encontrado: " << endl;
+            cout << "NOMBRE: " << vectorUsuarios[i]->getNombre() << endl;
+            cout << "ID: " << vectorUsuarios[i]->getId() << endl;
+            cout << "Materiales prestados: " << vectorUsuarios[i]->getMaterialesPrestadosActuales() << endl;
+            return true;
+        }
+        else{
+            cout << "Usuario no encontrado." << endl;
+            return false;
+        }
+    }
+   
+}
+
+
+
+bool eliminarUsuarioPorNombre(Usuario* vectorUsuarios[100], int contadorUsuarios){
+    string nombreBuscado;
+    cout << "Ingrese el nombre del usuario a buscar: ";
+    cin >> nombreBuscado;
+    for (int i = 0; i < contadorUsuarios; i++){
+        if (vectorUsuarios[i]->getNombre() == nombreBuscado){
+            cout << "Usuario encontrado: " << "NOMBRE: " << vectorUsuarios[i]->getNombre();
+            vectorUsuarios[i]->~Usuario();
+            vectorUsuarios[i] = nullptr;
+            cout << "--*USUARIO ELIMINADO*-";
+            cout << endl;
+            contadorUsuarios--;
+            return true;
+        }
+    }
+    cout << "Usuario no encontrado" << endl;
+    return false;
+}
+
+
 
 void mostrarInformacionLibros(string nombreTxt,  MaterialBibliografico* biblioteca[100], int contadorBiblioteca){
     
@@ -217,8 +295,68 @@ void leerBibliotecaTxt(string nombreTxt,  MaterialBibliografico* biblioteca[100]
     }
 }
 
-void leerUsuariosTxt(){
+
+void leerUsuarioTxt(string nombreTxt,  Usuario* vectorUsuarios[100], int contadorUsuarios){
+    fstream myFile;
+    myFile.open(nombreTxt, ios::in); // LEER
+    if (myFile.is_open()){
+        string line;
+        while (getline(myFile, line)){
+            // Cadena de ejemplo
+            string datos = line;
+            
+            // Variables para almacenar los valores separados
+            int parte3_int;
+            string parte1, parte2, parte3_str;
+            stringstream ss(line);
+            getline(ss, parte1, ',');
+            getline(ss, parte2, ',');
+            getline(ss, parte3_str, ',');
+            parte3_int = stoi(parte3_str);
+
+
+            // Es una revista
+            Usuario* nuevoUsuario = new Usuario(parte1, parte2, parte3_int);
+            vectorUsuarios[contadorUsuarios] = nuevoUsuario;
+            contadorUsuarios++;
+            
     
+        }
+        myFile.close();
+    } else {
+        cout << endl;
+        cout << "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << endl;
+        cout << "Error al abrir el archivo " + nombreTxt << endl;
+        cout << "Esto es normal si es la primera vez que se ejecuta el programa." << endl;
+        cout << "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << endl;
+        cout << endl;
+    }
+}
+
+void escribirTxtUsuario(string nombreTxt, Usuario* vectorUsuarios[100], bool append){
+
+    fstream myFile;
+    if (append){
+        myFile.open(nombreTxt, ios::app); // AGREGAR
+    }
+    else{
+        myFile.open(nombreTxt, ios::out); // SOBRE-ESCRIBIR
+    }
+    if (myFile.is_open()){
+        int i = 0;
+        while (vectorUsuarios[i] != nullptr){
+            
+            myFile << vectorUsuarios[i]->getNombre();
+            myFile << "," << vectorUsuarios[i]->getId();
+            myFile << "," << vectorUsuarios[i]->getMaterialesPrestadosActuales();
+            myFile << endl;   
+            i++;      
+        }
+        myFile.close();
+    }
+    else{
+        cout << "Error al abrir el archivo usuarios" << endl;
+    }
 }
 
 void escribirTxt(string nombreTxt, MaterialBibliografico* biblioteca[100], bool append){
@@ -360,10 +498,13 @@ int main(){
     
 
     MaterialBibliografico* biblioteca[100];
+    Usuario* vectorUsuarios[100];
     int contadorBiblioteca = 0;
+    int contadorUsuarios = 0;
     bool programaCorriendo = true;
 
     leerBibliotecaTxt("biblioteca.txt", biblioteca, contadorBiblioteca);
+    leerUsuarioTxt("usuarios.txt", vectorUsuarios, contadorUsuarios);
     
 
     cout << endl;
@@ -392,7 +533,8 @@ int main(){
         cout << endl;
         cout << "/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/" << endl;
 
-        int optionMenu0;
+        int optionMenu0= -1;
+
         cin >> optionMenu0;
 
         switch (optionMenu0)
@@ -603,6 +745,38 @@ int main(){
             /* MENU USUARIOS  */
             cout << endl;
 			cout << "/*-*-*-*-*-* MENU USUARIOS *-*-*-*-*-*/" << endl;
+            cout << "1) Crear Usuario" << endl;
+            cout << "2) Buscar Usuario" << endl;
+            cout << "3) Eliminar Usuario" << endl;
+            cout << "4) Imprimir Usuarios" << endl;
+            cout << "/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/" << endl;
+
+            int menuUsuarios;
+            cin >> menuUsuarios;
+
+        
+            switch (menuUsuarios)
+            {
+            case 1:
+                crearUsuario(vectorUsuarios, contadorUsuarios);
+                escribirTxtUsuario("usuarios.txt", vectorUsuarios, true);
+                break;
+            case 2:
+                buscarUsuarioPorNombre(vectorUsuarios, contadorUsuarios);
+                break;
+            case 3:
+                // Eliminar Usuario (implementación pendiente)
+                eliminarUsuarioPorNombre(vectorUsuarios, contadorUsuarios);
+                break;
+            case 4:
+                // Imprimir Usuarios (implementación pendiente)
+                imprimirTodosLosUsuarios(vectorUsuarios);
+                break;
+            default:
+                break;
+            }
+
+
             cout << "/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/" << endl;
             cout << endl;
             

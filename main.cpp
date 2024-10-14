@@ -14,8 +14,13 @@
 
 using namespace std;
 
-bool stringSonIguales(const string& cadena1, const string& cadena2) {
-    return cadena1 == cadena2;
+bool stringSonIguales(const string& palabra1, const string& palabra2) {
+    // Convertir las strings a arreglos de char
+    const char* cadena1 = palabra1.c_str();
+    const char* cadena2 = palabra2.c_str();
+
+    // Usar strcmp para comparar los arreglos de char
+    return strcmp(cadena1, cadena2) == 0;
 }
 
 
@@ -55,27 +60,20 @@ void crearUsuario(Usuario* vectorUsuarios[100], int contadorUsuarios){
     }
 }
 
-bool buscarUsuarioPorNombre(Usuario* vectorUsuarios[100], int contadorUsuarios) {
+void buscarUsuarioPorNombre(Usuario* vectorUsuarios[], int contadorUsuarios) {
     string nombreBuscado;
     cout << "Ingrese el nombre del usuario a buscar: ";
-    cin >> nombreBuscado;   
-    cout <<"Buscando usuario..."<< nombreBuscado << endl;   
+    cin.ignore();  // Elimina caracteres pendientes del buffer
+    getline(cin, nombreBuscado);  // Captura el nombre completo con espacios
     for (int i = 0; i < contadorUsuarios; i++) {
-
-
-        if (stringSonIguales(vectorUsuarios[i]->getNombre(), nombreBuscado)) {
+        if (vectorUsuarios[i]->getNombre() == nombreBuscado) {
             cout << "Usuario encontrado: " << endl;
             cout << "NOMBRE: " << vectorUsuarios[i]->getNombre() << endl;
             cout << "ID: " << vectorUsuarios[i]->getId() << endl;
-            cout << "Materiales prestados: " << vectorUsuarios[i]->getMaterialesPrestadosActuales() << endl;
-            return true;
-        }
-        else{
-            cout << "Usuario no encontrado." << endl;
-            return false;
+            return;
         }
     }
-   
+    cout << "Usuario no encontrado." << endl;
 }
 
 
@@ -493,31 +491,39 @@ else {
 }
 }
 
-void buscarMaterialPorTitulo(MaterialBibliografico *biblioteca[100],int contadorBiblioteca){
+bool buscarMaterialPorTitulo(MaterialBibliografico *biblioteca[100],int contadorBiblioteca){
 
     string titulo;
     cout << "Ingrese el título del material bibliográfico que desea buscar: ";
-    cin >> titulo;
-
+     cin.ignore();  // Elimina caracteres pendientes del buf
+     getline(cin, titulo);  // Captura el nombre completo con espacios  
     for(int i = 0; i < contadorBiblioteca; i++){
-        if(biblioteca[i]->getNombre() == titulo){
+        if(stringSonIguales(biblioteca[i]->getNombre(), titulo)){
+            cout << "TITULO ENCONTRADO" << endl;
             cout <<(i+1) <<") " << biblioteca[i]->getNombre() << endl;
+            return true;
         }
     }
+    return false;
+
 
 }
 
-void buscarMaterialPorAutor(MaterialBibliografico *biblioteca[100], int contadorBiblioteca){
+bool buscarMaterialPorAutor(MaterialBibliografico *biblioteca[100], int contadorBiblioteca){
     
     string autor;
     cout << "Ingrese el autor del material bibliográfico que desea buscar: ";
-    cin >> autor;
-
+ 
+    cin.ignore();  // Elimina caracteres pendientes del buf
+    getline(cin, autor);  // Captura el nombre completo con espacios 
     for(int i = 0; i < contadorBiblioteca; i++){
-        if(biblioteca[i]->getAutor() == autor){
+        if(stringSonIguales(biblioteca[i]->getAutor(), autor)){
+            cout << "AUTOR ENCONTRADO" << endl;
             cout <<(i+1) <<") " << biblioteca[i]->getNombre() << endl;
+            return true;
         }
     }
+    return false;
 
 }
 

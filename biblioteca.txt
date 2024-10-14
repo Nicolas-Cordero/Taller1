@@ -1,1 +1,8 @@
 revista,revista1,ISBN1,AUTOR1,0,1,enero
+libro,libro1,123,nico,0,10,resumen
+revista,revista,123,pedro,0,345,enero
+libro,libro1,123,nico,0,10,resumen
+libro,libro1,123,pedro,0,marzo,resumen
+libro,libro1,123,nico,0,10,resumen
+revista,revista,123,pedro,0,345,enero
+libro,libro1,123,nico,0,10,resumen

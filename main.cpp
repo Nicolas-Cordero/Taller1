@@ -387,7 +387,8 @@ int main(){
         cout << "2) Mostrar información de los materiales bibliográficos" << endl;
         cout << "3) Buscar material bibliográfico" << endl;
         cout << "4) Prestamo y devolución de material" << endl;
-        cout << "5) Guardar y salir del programa" << endl;
+        cout << "5) Menu Usuarios" << endl;
+        cout << "6) Guardar y salir del programa" << endl;
         cout << endl;
         cout << "/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/" << endl;
 
@@ -598,13 +599,18 @@ int main(){
             // EL USUARIO INGRESA EL ISBN Y DE CAMBIA EL ESTADO DE PRESTADO
 
 
-
+        case 5:
+            /* MENU USUARIOS  */
+            cout << endl;
+			cout << "/*-*-*-*-*-* MENU USUARIOS *-*-*-*-*-*/" << endl;
+            cout << "/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/" << endl;
+            cout << endl;
             
 
 
             break;
         
-        case 5:
+        case 6:
             programaCorriendo = false;
             break;
         default:

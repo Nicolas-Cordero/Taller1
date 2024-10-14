@@ -493,6 +493,34 @@ else {
 }
 }
 
+void buscarMaterialPorTitulo(MaterialBibliografico *biblioteca[100],int contadorBiblioteca){
+
+    string titulo;
+    cout << "Ingrese el título del material bibliográfico que desea buscar: ";
+    cin >> titulo;
+
+    for(int i = 0; i < contadorBiblioteca; i++){
+        if(biblioteca[i]->getNombre() == titulo){
+            cout <<(i+1) <<") " << biblioteca[i]->getNombre() << endl;
+        }
+    }
+
+}
+
+void buscarMaterialPorAutor(MaterialBibliografico *biblioteca[100], int contadorBiblioteca){
+    
+    string autor;
+    cout << "Ingrese el autor del material bibliográfico que desea buscar: ";
+    cin >> autor;
+
+    for(int i = 0; i < contadorBiblioteca; i++){
+        if(biblioteca[i]->getAutor() == autor){
+            cout <<(i+1) <<") " << biblioteca[i]->getNombre() << endl;
+        }
+    }
+
+}
+
 int main(){
 
     
@@ -708,15 +736,17 @@ int main(){
                 cout << endl;
 			    cout << "/*-*-*-*-*-* Buscar por título *-*-*-*-*-*/" << endl;
 			    cout << endl;
+                
                 cout << "/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/" << endl;
                 cout << endl;
-
+                buscarMaterialPorTitulo(biblioteca, contadorBiblioteca);
                 break;
             case 2:
                 /* Buscar por autor */
                 cout << endl;
 			    cout << "/*-*-*-*-*-* Buscar por Autor *-*-*-*-*-*/" << endl;
 			    cout << endl;
+                buscarMaterialPorAutor(biblioteca, contadorBiblioteca);
                 cout << "/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-/" << endl;
                 cout << endl;
 
